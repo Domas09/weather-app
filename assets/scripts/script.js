@@ -1,10 +1,14 @@
 const inputEl = $('#search');
 const buttonEl = $('#button');
+const historyEl= $('#history')
 const apiKey = "8711bd59c68c354f16fbda5d3363ba0f";
 
+// fetches weather api data for today
 function searchWeather(event){
     event.preventDefault();
     const cityText = inputEl.val();
+    saveHistoryToStorage(cityText);
+    renderHistory();
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityText}&appid=${apiKey}&units=metric`
 
@@ -17,6 +21,7 @@ function searchWeather(event){
         }
     })
 }
+// fetches weather api data for next 5 days
 function searchWeatherForecast(event){
     event.preventDefault();
     const cityText = inputEl.val();
@@ -33,9 +38,10 @@ function searchWeatherForecast(event){
             })
         }
     })
+    
 }
 
-
+// sets todays weather data
 function setWeather(data){
     $('#name-date').text(data.name + " right now");
     determineWeatherIcon(data.weather[0].icon,"");
@@ -43,7 +49,7 @@ function setWeather(data){
     $('#wind').text("Wind: " + data.wind.speed + "mph");
     $('#humidity').text("Humidity: " + data.main.humidity + "%");
 }
-
+// sets 5 day forecast data
 function setWeatherForecast(data, a){
     b = (a*8)+4;
     $(`#date${a}`).text(dayjs(data.list[b].dt_txt).format("M-D"));
@@ -52,6 +58,7 @@ function setWeatherForecast(data, a){
     $(`#wind${a}`).text("Wind: "+data.list[b].wind.speed+"mph");
     $(`#humidity${a}`).text("Humidity: "+data.list[b].main.humidity+"%");
 }
+// determines what weather icon to display
 function determineWeatherIcon(data,a){
     const currentIcon = $(`#icon${a}`);
     if(data === "11d"){
@@ -93,6 +100,36 @@ function determineWeatherIcon(data,a){
     } else {
         currentIcon.attr("src", function() {
             return "./assets/images/images.png" })
+    }
+}
+// reads local storage
+function readHistory(){
+    let historyList = JSON.parse(localStorage.getItem("history"));
+    if (!historyList){
+        historyList = [];
+    }
+    return historyList;
+}
+// writes to local storage
+function saveHistoryToStorage(history){
+    let historyArray = readHistory();
+    historyArray.push(history);
+    localStorage.setItem("history", JSON.stringify(historyArray));
+}
+// creates history element
+function createHistory(singleHistory){
+    const newHistory = $("<div>").addClass("bg-secondary m-3 historyBtn");
+    const historyText = $("<button>").addClass("fs-4").attr("type", "button").text(singleHistory);
+    newHistory.append(historyText);
+    
+    return newHistory;
+}
+// renders History Array
+function renderHistory() {
+    const history = readHistory();
+    $(".historyBtn").remove();
+    for(let i = 0; i < history.length; i++){
+        historyEl.append(createHistory(history[i]));
     }
 }
 
