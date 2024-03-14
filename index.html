@@ -6,7 +6,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-    <link href="./assests/styles/style.css" rel="stylesheet"/>
+    <link href="./assets/styles/style.css" rel="stylesheet"/>
 </head>
 <body>
     <header>
@@ -24,48 +24,52 @@
                     <input id="search" type="text" class="form-control" placeholder="New York City" aria-label="City Lookup" aria-describedby="basic-addon1">
                 </div>
                 <button id="button" type="button" class="btn btn-primary">Search</button>
+                <h3 class = "fs-4 my-2">History:</h3>
                 <div id="history">
+
                 </div>
             </section>
-            <section class="col-9">
-                <div class="col-9 border border-3">
+            <section class="col-9 text-white">
+                <div class="col-9 border border-3 card bg-dark p-3">
                     <h2 id="name-date" class="fs-1"></h2>
+                    <img id="icon" src="">
                     <p id="temp" class="fs-4"></p>
                     <p id="wind" class="fs-4"></p>
                     <p id="humidity" class="fs-4"></p>
                 </div>
-                <div class = "row">
-                <div class="col-2 border border-3">
+                <h3 class= "fs-4 text-dark">5-day Forecast:</h3>
+                <div class = "row gy-3">
+                <div class="col-2 border border-3 card bg-dark">
                     <h3 id="date0" class = "fs-4"></h3>
-                    <span id="icon0"></span>
+                    <img id="icon0" src="">
                     <p id="temp0" class="fs-5"></p>
                     <p id="wind0" class="fs-5"></p>
                     <p id="humidity0" class="fs-5"></p>
                 </div>
-                <div class="col-2 border border-3">
+                <div class="col-2 border border-3 card bg-dark">
                     <h3 id="date1" class = "fs-4"></h3>
-                    <span id="icon1"></span>
+                    <img id="icon1" src="">
                     <p id="temp1" class="fs-5"></p>
                     <p id="wind1" class="fs-5"></p>
                     <p id="humidity1" class="fs-5"></p>
                 </div>
-                <div class="col-2 border border-3">
+                <div class="col-2 border border-3 card bg-dark">
                     <h3 id="date2" class = "fs-4"></h3>
-                    <span id="icon2"></span>
+                    <img id="icon2" src="">
                     <p id="temp2" class="fs-5"></p>
                     <p id="wind2" class="fs-5"></p>
                     <p id="humidity2" class="fs-5"></p>
                 </div>
-                <div class="col-2 border border-3">
+                <div class="col-2 border border-3 card bg-dark">
                     <h3 id="date3" class = "fs-4"></h3>
-                    <span id="icon3"></span>
+                    <img id="icon3" src="">
                     <p id="temp3" class="fs-5"></p>
                     <p id="wind3" class="fs-5"></p>
                     <p id="humidity3" class="fs-5"></p>
                 </div>
-                <div class="col-2 border border-3">
+                <div class="col-2 border border-3 card bg-dark">
                     <h3 id="date4" class = "fs-4"></h3>
-                    <span id="icon4"></span>
+                    <img id="icon4" src="">
                     <p id="temp4" class="fs-5"></p>
                     <p id="wind4" class="fs-5"></p>
                     <p id="humidity4" class="fs-5"></p>
@@ -77,6 +81,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <script src="./assests/scripts/script.js"></script>
+    <script src="./assets/scripts/script.js"></script>
 </body>
 </html>
