@@ -1,22 +1,22 @@
 const inputEl = $('#search');
 const buttonEl = $('#button');
 const historyEl= $('#history')
+
 const apiKey = "8711bd59c68c354f16fbda5d3363ba0f";
 
 // fetches weather api data for today
 function searchWeather(event){
     event.preventDefault();
     const cityText = inputEl.val();
-    saveHistoryToStorage(cityText);
-    renderHistory();
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityText}&appid=${apiKey}&units=metric`
 
     fetch(url).then(function(response){
         if(response.ok) {
             response.json().then(function(data) {
-                console.log(data)
                 setWeather(data);
+                saveHistoryToStorage(cityText);
+                renderHistory();
             })
         }
     })
@@ -26,6 +26,7 @@ function searchWeatherForecast(event){
     event.preventDefault();
     const cityText = inputEl.val();
     
+
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityText}&appid=${apiKey}&units=metric`
 
     fetch(url).then(function(response){
@@ -34,7 +35,6 @@ function searchWeatherForecast(event){
                 for(let i = 0; i < 5; i++){
                     setWeatherForecast(data,i);
                 }
-                console.log(data);
             })
         }
     })
@@ -132,8 +132,16 @@ function renderHistory() {
         historyEl.append(createHistory(history[i]));
     }
 }
+// makes history buttons work
+function historyButton(event){
+    const currentBtnTxt = event.target.val();
+    inputEl.text("");
+}
+
 
 
 
 buttonEl.on('click', searchWeather);
 buttonEl.on('click', searchWeatherForecast);
+$(".historyBtn").on("click", historyButton)
+renderHistory();
